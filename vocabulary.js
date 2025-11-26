@@ -504,7 +504,7 @@ const vocabularyDatabase = [
         category: "numbers",
         categoryColor: "#4ECDC4",
         uniqueColor: "#FFA07A",
-        emojiGrid: ["⚖️", "6️⃣", "0️⃣", "🏃", "💪", "🏃", "kg", "⚖️", "🔢"]
+        emojiGrid: ["⚖️", "6️⃣", "0️⃣", "🏃", "💪", "🏃", "🏋️", "⚖️", "🔢"]
     },
     {
         id: "weight_002",
@@ -513,7 +513,7 @@ const vocabularyDatabase = [
         category: "numbers",
         categoryColor: "#4ECDC4",
         uniqueColor: "#FA8072",
-        emojiGrid: ["⚖️", "7️⃣", "5️⃣", "🏋️", "💪", "🏋️", "kg", "⚖️", "🔢"]
+        emojiGrid: ["⚖️", "7️⃣", "5️⃣", "🏋️", "💪", "🏋️", "🏋️", "⚖️", "🔢"]
     },
     {
         id: "weight_003",
@@ -522,7 +522,7 @@ const vocabularyDatabase = [
         category: "numbers",
         categoryColor: "#4ECDC4",
         uniqueColor: "#E9967A",
-        emojiGrid: ["⚖️", "8️⃣", "0️⃣", "🏋️", "💪", "🏋️", "kg", "⚖️", "🔢"]
+        emojiGrid: ["⚖️", "8️⃣", "0️⃣", "🏋️", "💪", "🏋️", "🏋️", "⚖️", "🔢"]
     },
 
     // Height (typical human heights)
@@ -533,7 +533,7 @@ const vocabularyDatabase = [
         category: "numbers",
         categoryColor: "#4ECDC4",
         uniqueColor: "#87CEFA",
-        emojiGrid: ["📏", "1️⃣", "6️⃣", "5️⃣", "👩", "📐", "cm", "📏", "🔢"]
+        emojiGrid: ["📏", "1️⃣", "6️⃣", "5️⃣", "👩", "📐", "📏", "📐", "🔢"]
     },
     {
         id: "height_002",
@@ -542,7 +542,7 @@ const vocabularyDatabase = [
         category: "numbers",
         categoryColor: "#4ECDC4",
         uniqueColor: "#00BFFF",
-        emojiGrid: ["📏", "1️⃣", "7️⃣", "5️⃣", "👨", "📐", "cm", "📏", "🔢"]
+        emojiGrid: ["📏", "1️⃣", "7️⃣", "5️⃣", "👨", "📐", "📏", "📐", "🔢"]
     },
     {
         id: "height_003",
@@ -551,7 +551,7 @@ const vocabularyDatabase = [
         category: "numbers",
         categoryColor: "#4ECDC4",
         uniqueColor: "#1E90FF",
-        emojiGrid: ["📏", "1️⃣", "8️⃣", "0️⃣", "🧍", "📐", "cm", "📏", "🔢"]
+        emojiGrid: ["📏", "1️⃣", "8️⃣", "0️⃣", "🧍", "📐", "📏", "📐", "🔢"]
     },
 
     // Time of day
