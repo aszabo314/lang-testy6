@@ -85,7 +85,7 @@
             correctCount: 0,
             almostCount: 0,
             wrongCount: 0,
-            sessionStats: {}, // { entryId: { attempts, correct, wrong, lastSeen, errorRate } }
+            sessionStats: {}, // { entryId: { attempts, correct, wrong, lastSeen, errorRate, consecutiveCorrectOnList, hiddenFromList } }
             answeredThisRound: false
         };
 
@@ -171,13 +171,16 @@
                 const stats = gameState.sessionStats[entry.id] || { 
                     attempts: 0, 
                     errorRate: 0, 
-                    lastSeen: 0 
+                    lastSeen: 0,
+                    hiddenFromList: false
                 };
 
                 let weight = 1.0;
 
-                // Boost by error rate (0-10x multiplier)
-                weight *= (1 + stats.errorRate * 9);
+                // Boost by error rate (0-10x multiplier), but not if hidden from list
+                if (!stats.hiddenFromList) {
+                    weight *= (1 + stats.errorRate * 9);
+                }
 
                 // Reduce if seen recently (within last 5 words)
                 const timeSinceLastSeen = Date.now() - stats.lastSeen;
@@ -279,15 +282,17 @@
         function updateMistakesList() {
             const mistakesList = document.getElementById('mistakesList');
             
-            // Calculate top mistakes
+            // Calculate top mistakes (exclude entries that are currently hidden from list)
             const mistakes = Object.entries(gameState.sessionStats)
-                .filter(([id, stats]) => stats.wrong > 0)
+                .filter(([id, stats]) => stats.wrong > 0 && !stats.hiddenFromList)
                 .map(([id, stats]) => {
                     const entry = vocabularyDatabase.find(e => e.id === id);
                     return {
                         entry: entry,
+                        id: id,
                         errors: stats.wrong,
-                        errorRate: stats.errorRate
+                        errorRate: stats.errorRate,
+                        consecutiveCorrect: stats.consecutiveCorrectOnList || 0
                     };
                 })
                 .sort((a, b) => b.errors - a.errors)
@@ -300,11 +305,13 @@
 
             mistakesList.innerHTML = mistakes.map((mistake, index) => {
                 const emoji = mistake.entry.emojiGrid[4]; // Center emoji
+                const progressDots = '✓'.repeat(mistake.consecutiveCorrect) + '○'.repeat(3 - mistake.consecutiveCorrect);
                 return `
                     <div class="mistake-item">
                         <span class="emoji-preview">${emoji}</span>
                         ${index + 1}. ${mistake.entry.german} → ${mistake.entry.czech} 
                         (${mistake.errors} ${mistake.errors === 1 ? 'error' : 'errors'})
+                        <span style="margin-left: 10px; color: #28a745;">${progressDots}</span>
                     </div>
                 `;
             }).join('');
@@ -331,7 +338,9 @@
                     correct: 0,
                     wrong: 0,
                     lastSeen: Date.now(),
-                    errorRate: 0
+                    errorRate: 0,
+                    consecutiveCorrectOnList: 0,
+                    hiddenFromList: false
                 };
             }
 
@@ -339,22 +348,56 @@
             stats.attempts++;
             stats.lastSeen = Date.now();
 
+            // Check if this entry is currently on the most missed list
+            const isOnMostMissedList = stats.wrong > 0 && !stats.hiddenFromList;
+
             if (result === 'PERFECT') {
                 const points = calculateNextPoints(gameState.streak);
                 gameState.score += points;
                 gameState.streak++;
                 gameState.correctCount++;
                 stats.correct++;
+
+                // Track consecutive correct answers for entries on the most missed list
+                if (isOnMostMissedList) {
+                    stats.consecutiveCorrectOnList = (stats.consecutiveCorrectOnList || 0) + 1;
+                    
+                    // Hide from list after 3 consecutive correct answers
+                    if (stats.consecutiveCorrectOnList >= 3) {
+                        stats.hiddenFromList = true;
+                    }
+                }
             } else if (result === 'ALMOST') {
                 const points = Math.round(calculateNextPoints(gameState.streak) / 2);
                 gameState.score += points;
                 gameState.streak++; // Streak continues for "almost"
                 gameState.almostCount++;
                 stats.correct++; // Count as correct for error rate
+
+                // Track consecutive correct answers for entries on the most missed list
+                if (isOnMostMissedList) {
+                    stats.consecutiveCorrectOnList = (stats.consecutiveCorrectOnList || 0) + 1;
+                    
+                    // Hide from list after 3 consecutive correct answers
+                    if (stats.consecutiveCorrectOnList >= 3) {
+                        stats.hiddenFromList = true;
+                    }
+                }
             } else {
                 gameState.streak = 0; // Reset streak
                 gameState.wrongCount++;
                 stats.wrong++;
+
+                // Re-add to most missed list if it was hidden (reset state)
+                if (stats.hiddenFromList) {
+                    stats.hiddenFromList = false;
+                    stats.consecutiveCorrectOnList = 0;
+                }
+
+                // Reset consecutive correct counter on wrong answer
+                if (isOnMostMissedList) {
+                    stats.consecutiveCorrectOnList = 0;
+                }
             }
 
             // Update error rate
