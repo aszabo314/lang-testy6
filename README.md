@@ -40,14 +40,21 @@ start index.html  # Windows
 
 | Category | Examples |
 |----------|----------|
-| Greetings | Hallo → Ahoj, Guten Tag → Dobrý den |
-| Basics | Danke → Děkuji, Bitte → Prosím |
-| Numbers | eins → jeden/jedna, zwei → dva/dvě, prices, dates, ages, measurements, time |
+| Greetings | Hallo → Ahoj, Wie geht es dir? → Jak se máš? |
+| Basics | Danke → Děkuji, Ich verstehe → Rozumím |
+| Numbers | eins → jeden/jedna, prices, dates, ages, measurements, time |
 | Months | Januar → leden, Februar → únor, März → březen |
-| Food & Drink | Bier → pivo, Kaffee → káva |
-| Travel | Bahnhof → nádraží, links → vlevo |
-| Time & Days | heute → dnes, Montag → pondělí |
-| Verbs | sein → být, haben → mít |
+| Food & Drink | Bier → pivo, Suppe → polévka, Kuchen → koláč |
+| Travel | Bahnhof → nádraží, Haltestelle → zastávka |
+| Time & Days | heute → dnes, Montag → pondělí, jetzt → teď |
+| Verbs | sein → být, essen → jíst, lernen → učit se |
+| Phrases | Das Haus ist groß → Dům je velký |
+| Tenses | Ich war dort → Byl jsem tam, Ich werde gehen → Půjdu |
+| Persons | Ich bin müde → Jsem unavený, Wir sind Freunde → Jsme přátelé |
+| Sayings | Alles Gute! → Všechno nejlepší!, Prost! → Na zdraví! |
+| Family | Mutter → matka, Vater → otec, Kind → dítě |
+| Places | Schule → škola, Restaurant → restaurace |
+| Adjectives | groß → velký, schön → krásný, schnell → rychlý |
 
 ## Project Structure
 
