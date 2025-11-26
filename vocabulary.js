@@ -1,4 +1,6 @@
 // Czech Vocabulary Trainer Database
+// Note: 'czech' can be a string or an array of strings for words with multiple acceptable forms
+// (e.g., masculine/feminine variants). The first element is the primary form shown in prompts.
 const vocabularyDatabase = [
     // Greetings & Basics
     {
@@ -101,11 +103,12 @@ const vocabularyDatabase = [
         emojiGrid: ["🙏", "😔", "🙏", "💔", "😢", "💔", "🙏", "😔", "🙏"]
     },
 
-    // Numbers
+    // Numbers (basic 1-10)
+    // Note: "jeden/jedna" and "dva/dvě" have masculine/feminine forms
     {
         id: "num_001",
         german: "eins",
-        czech: "jeden",
+        czech: ["jeden", "jedna"],
         category: "numbers",
         categoryColor: "#4ECDC4",
         uniqueColor: "#1E90FF",
@@ -114,7 +117,7 @@ const vocabularyDatabase = [
     {
         id: "num_002",
         german: "zwei",
-        czech: "dva",
+        czech: ["dva", "dvě"],
         category: "numbers",
         categoryColor: "#4ECDC4",
         uniqueColor: "#00CED1",
@@ -191,6 +194,449 @@ const vocabularyDatabase = [
         categoryColor: "#4ECDC4",
         uniqueColor: "#4B8BBE",
         emojiGrid: ["🔟", "🙌", "🔟", "⭐", "①", "⓪", "🔟", "🙌", "🔟"]
+    },
+
+    // Numbers (teens and tens)
+    {
+        id: "num_011",
+        german: "elf",
+        czech: "jedenáct",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#20B2AA",
+        emojiGrid: ["1️⃣", "1️⃣", "🔢", "⬛", "🔵", "⬛", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_012",
+        german: "zwölf",
+        czech: "dvanáct",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#48D1CC",
+        emojiGrid: ["1️⃣", "2️⃣", "🔢", "🕛", "🎄", "🕛", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_013",
+        german: "fünfzehn",
+        czech: "patnáct",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#5F9EA0",
+        emojiGrid: ["1️⃣", "5️⃣", "🔢", "⬛", "🔵", "⬛", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_014",
+        german: "zwanzig",
+        czech: "dvacet",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#00868B",
+        emojiGrid: ["2️⃣", "0️⃣", "🔢", "⬛", "🔵", "⬛", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_015",
+        german: "fünfundzwanzig",
+        czech: "dvacet pět",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#008B8B",
+        emojiGrid: ["2️⃣", "5️⃣", "🔢", "⬛", "🔵", "⬛", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_016",
+        german: "dreißig",
+        czech: "třicet",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#2F4F4F",
+        emojiGrid: ["3️⃣", "0️⃣", "🔢", "⬛", "🔵", "⬛", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_017",
+        german: "fünfzig",
+        czech: "padesát",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#008080",
+        emojiGrid: ["5️⃣", "0️⃣", "🔢", "⬛", "🔵", "⬛", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_018",
+        german: "hundert",
+        czech: "sto",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#40E0D0",
+        emojiGrid: ["1️⃣", "0️⃣", "0️⃣", "💯", "🔵", "💯", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_019",
+        german: "zweihundert",
+        czech: "dvě stě",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#00CED1",
+        emojiGrid: ["2️⃣", "0️⃣", "0️⃣", "💯", "💯", "🔵", "🔢", "🔢", "🔢"]
+    },
+    {
+        id: "num_020",
+        german: "tausend",
+        czech: "tisíc",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#7FFFD4",
+        emojiGrid: ["1️⃣", "0️⃣", "0️⃣", "0️⃣", "🔵", "💫", "🔢", "🔢", "🔢"]
+    },
+
+    // Product prices in crowns (CZK)
+    {
+        id: "price_czk_001",
+        german: "49 Kronen",
+        czech: "čtyřicet devět korun",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#DAA520",
+        emojiGrid: ["💰", "🇨🇿", "💰", "4️⃣", "9️⃣", "🪙", "💵", "💵", "💵"]
+    },
+    {
+        id: "price_czk_002",
+        german: "99 Kronen",
+        czech: "devadesát devět korun",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#B8860B",
+        emojiGrid: ["💰", "🇨🇿", "💰", "9️⃣", "9️⃣", "🪙", "💵", "💵", "💵"]
+    },
+    {
+        id: "price_czk_003",
+        german: "199 Kronen",
+        czech: "sto devadesát devět korun",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#CD853F",
+        emojiGrid: ["💰", "🇨🇿", "💰", "1️⃣", "9️⃣", "9️⃣", "💵", "💵", "💵"]
+    },
+    {
+        id: "price_czk_004",
+        german: "299 Kronen",
+        czech: "dvě stě devadesát devět korun",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#D2691E",
+        emojiGrid: ["💰", "🇨🇿", "💰", "2️⃣", "9️⃣", "9️⃣", "💵", "💵", "💵"]
+    },
+    {
+        id: "price_czk_005",
+        german: "499 Kronen",
+        czech: "čtyři sta devadesát devět korun",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#8B4513",
+        emojiGrid: ["💰", "🇨🇿", "💰", "4️⃣", "9️⃣", "9️⃣", "💵", "💵", "💵"]
+    },
+
+    // Product prices in euros (EUR)
+    {
+        id: "price_eur_001",
+        german: "5 Euro",
+        czech: "pět euro",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#003399",
+        emojiGrid: ["💶", "🇪🇺", "💶", "5️⃣", "🔵", "💵", "💶", "💶", "💶"]
+    },
+    {
+        id: "price_eur_002",
+        german: "10 Euro",
+        czech: "deset euro",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#0047AB",
+        emojiGrid: ["💶", "🇪🇺", "💶", "1️⃣", "0️⃣", "💵", "💶", "💶", "💶"]
+    },
+    {
+        id: "price_eur_003",
+        german: "25 Euro",
+        czech: "dvacet pět euro",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#0057B8",
+        emojiGrid: ["💶", "🇪🇺", "💶", "2️⃣", "5️⃣", "💵", "💶", "💶", "💶"]
+    },
+    {
+        id: "price_eur_004",
+        german: "50 Euro",
+        czech: "padesát euro",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#4169E1",
+        emojiGrid: ["💶", "🇪🇺", "💶", "5️⃣", "0️⃣", "💵", "💶", "💶", "💶"]
+    },
+    {
+        id: "price_eur_005",
+        german: "100 Euro",
+        czech: "sto euro",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#1E90FF",
+        emojiGrid: ["💶", "🇪🇺", "💶", "1️⃣", "0️⃣", "0️⃣", "💶", "💶", "💶"]
+    },
+
+    // Years (dates)
+    {
+        id: "year_001",
+        german: "2024",
+        czech: "dva tisíce dvacet čtyři",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#9932CC",
+        emojiGrid: ["📅", "🗓️", "📅", "2️⃣", "0️⃣", "2️⃣", "4️⃣", "📆", "🎉"]
+    },
+    {
+        id: "year_002",
+        german: "2000",
+        czech: "dva tisíce",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#8B008B",
+        emojiGrid: ["📅", "🗓️", "📅", "2️⃣", "0️⃣", "0️⃣", "0️⃣", "📆", "🎊"]
+    },
+    {
+        id: "year_003",
+        german: "1990",
+        czech: "tisíc devět set devadesát",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#9400D3",
+        emojiGrid: ["📅", "🗓️", "📅", "1️⃣", "9️⃣", "9️⃣", "0️⃣", "📆", "🎵"]
+    },
+
+    // Day and month dates
+    {
+        id: "date_001",
+        german: "der erste Januar",
+        czech: "prvního ledna",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FF6B6B",
+        emojiGrid: ["📅", "1️⃣", "📅", "🎆", "🎊", "🎆", "❄️", "⛄", "❄️"]
+    },
+    {
+        id: "date_002",
+        german: "der fünfzehnte März",
+        czech: "patnáctého března",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#98FB98",
+        emojiGrid: ["📅", "1️⃣", "5️⃣", "🌸", "🌱", "🌸", "🌷", "🌼", "🌷"]
+    },
+    {
+        id: "date_003",
+        german: "der vierundzwanzigste Dezember",
+        czech: "dvacátého čtvrtého prosince",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#228B22",
+        emojiGrid: ["📅", "2️⃣", "4️⃣", "🎄", "🎁", "🎄", "⭐", "🌟", "⭐"]
+    },
+    {
+        id: "date_004",
+        german: "der einunddreißigste Dezember",
+        czech: "třicátého prvního prosince",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FFD700",
+        emojiGrid: ["📅", "3️⃣", "1️⃣", "🎆", "🍾", "🎆", "🎊", "🥂", "🎊"]
+    },
+
+    // Typical ages
+    {
+        id: "age_001",
+        german: "18 Jahre alt",
+        czech: "osmnáct let",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FF69B4",
+        emojiGrid: ["🎂", "1️⃣", "8️⃣", "🎉", "🎓", "🎉", "🚗", "🗳️", "🍾"]
+    },
+    {
+        id: "age_002",
+        german: "25 Jahre alt",
+        czech: "dvacet pět let",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FF1493",
+        emojiGrid: ["🎂", "2️⃣", "5️⃣", "🎉", "👔", "🎉", "💼", "🏠", "💍"]
+    },
+    {
+        id: "age_003",
+        german: "30 Jahre alt",
+        czech: "třicet let",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#C71585",
+        emojiGrid: ["🎂", "3️⃣", "0️⃣", "🎉", "👨‍👩‍👧", "🎉", "🏡", "💪", "🎊"]
+    },
+    {
+        id: "age_004",
+        german: "50 Jahre alt",
+        czech: "padesát let",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#DB7093",
+        emojiGrid: ["🎂", "5️⃣", "0️⃣", "🎉", "🎊", "🎉", "👴", "👵", "🎂"]
+    },
+    {
+        id: "age_005",
+        german: "65 Jahre alt",
+        czech: "šedesát pět let",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#DDA0DD",
+        emojiGrid: ["🎂", "6️⃣", "5️⃣", "🎉", "🧓", "🎉", "🏖️", "🌴", "✈️"]
+    },
+
+    // Weight (typical human weights)
+    {
+        id: "weight_001",
+        german: "60 Kilogramm",
+        czech: "šedesát kilogramů",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FFA07A",
+        emojiGrid: ["⚖️", "6️⃣", "0️⃣", "🏃", "💪", "🏃", "kg", "⚖️", "🔢"]
+    },
+    {
+        id: "weight_002",
+        german: "75 Kilogramm",
+        czech: "sedmdesát pět kilogramů",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FA8072",
+        emojiGrid: ["⚖️", "7️⃣", "5️⃣", "🏋️", "💪", "🏋️", "kg", "⚖️", "🔢"]
+    },
+    {
+        id: "weight_003",
+        german: "80 Kilogramm",
+        czech: "osmdesát kilogramů",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#E9967A",
+        emojiGrid: ["⚖️", "8️⃣", "0️⃣", "🏋️", "💪", "🏋️", "kg", "⚖️", "🔢"]
+    },
+
+    // Height (typical human heights)
+    {
+        id: "height_001",
+        german: "165 Zentimeter",
+        czech: "sto šedesát pět centimetrů",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#87CEFA",
+        emojiGrid: ["📏", "1️⃣", "6️⃣", "5️⃣", "👩", "📐", "cm", "📏", "🔢"]
+    },
+    {
+        id: "height_002",
+        german: "175 Zentimeter",
+        czech: "sto sedmdesát pět centimetrů",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#00BFFF",
+        emojiGrid: ["📏", "1️⃣", "7️⃣", "5️⃣", "👨", "📐", "cm", "📏", "🔢"]
+    },
+    {
+        id: "height_003",
+        german: "180 Zentimeter",
+        czech: "sto osmdesát centimetrů",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#1E90FF",
+        emojiGrid: ["📏", "1️⃣", "8️⃣", "0️⃣", "🧍", "📐", "cm", "📏", "🔢"]
+    },
+
+    // Time of day
+    {
+        id: "time_clock_001",
+        german: "8 Uhr",
+        czech: "osm hodin",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FFD700",
+        emojiGrid: ["🕗", "8️⃣", "🕗", "☀️", "🌅", "☀️", "☕", "🥐", "💼"]
+    },
+    {
+        id: "time_clock_002",
+        german: "12 Uhr",
+        czech: "dvanáct hodin",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FFA500",
+        emojiGrid: ["🕛", "1️⃣", "2️⃣", "☀️", "🌞", "☀️", "🍽️", "🥗", "🍴"]
+    },
+    {
+        id: "time_clock_003",
+        german: "18 Uhr",
+        czech: "osmnáct hodin",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#FF8C00",
+        emojiGrid: ["🕕", "1️⃣", "8️⃣", "🌆", "🏠", "🌆", "🍽️", "👨‍👩‍👧", "📺"]
+    },
+    {
+        id: "time_clock_004",
+        german: "22 Uhr",
+        czech: "dvacet dva hodin",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#4B0082",
+        emojiGrid: ["🕙", "2️⃣", "2️⃣", "🌙", "🌃", "🌙", "📺", "🛋️", "😴"]
+    },
+
+    // Durations
+    {
+        id: "duration_001",
+        german: "30 Minuten",
+        czech: "třicet minut",
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#32CD32",
+        emojiGrid: ["⏱️", "3️⃣", "0️⃣", "⏰", "🏃", "⏰", "🚶", "⌛", "🔢"]
+    },
+    {
+        id: "duration_002",
+        german: "eine Stunde",
+        czech: ["jedna hodina", "hodina"],
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#228B22",
+        emojiGrid: ["⏱️", "1️⃣", "🕐", "⏰", "📚", "⏰", "🎬", "⌛", "🔢"]
+    },
+    {
+        id: "duration_003",
+        german: "zwei Stunden",
+        czech: ["dvě hodiny", "2 hodiny"],
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#006400",
+        emojiGrid: ["⏱️", "2️⃣", "🕑", "⏰", "🎬", "⏰", "✈️", "⌛", "🔢"]
+    },
+    {
+        id: "duration_004",
+        german: "ein Tag",
+        czech: ["jeden den", "den"],
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#9ACD32",
+        emojiGrid: ["📅", "1️⃣", "☀️", "🌅", "☀️", "🌆", "🌙", "⌛", "🔢"]
+    },
+    {
+        id: "duration_005",
+        german: "eine Woche",
+        czech: ["jeden týden", "týden"],
+        category: "numbers",
+        categoryColor: "#4ECDC4",
+        uniqueColor: "#6B8E23",
+        emojiGrid: ["📅", "7️⃣", "🗓️", "📆", "📅", "📆", "🗓️", "⌛", "🔢"]
     },
 
     // Food & Drink
@@ -451,5 +897,115 @@ const vocabularyDatabase = [
         categoryColor: "#38A3A5",
         uniqueColor: "#FF6347",
         emojiGrid: ["🔨", "⚙️", "🔨", "🛠️", "✨", "🛠️", "🔨", "⚙️", "🔨"]
+    },
+
+    // Months
+    {
+        id: "month_001",
+        german: "Januar",
+        czech: "leden",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#E8F4EA",
+        emojiGrid: ["📅", "1️⃣", "📅", "❄️", "⛄", "❄️", "🎆", "🥶", "🌨️"]
+    },
+    {
+        id: "month_002",
+        german: "Februar",
+        czech: "únor",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#FFB6C1",
+        emojiGrid: ["📅", "2️⃣", "📅", "❄️", "💕", "❄️", "🌨️", "❤️", "⛄"]
+    },
+    {
+        id: "month_003",
+        german: "März",
+        czech: "březen",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#98FB98",
+        emojiGrid: ["📅", "3️⃣", "📅", "🌱", "🌸", "🌱", "🌷", "☘️", "🌼"]
+    },
+    {
+        id: "month_004",
+        german: "April",
+        czech: "duben",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#90EE90",
+        emojiGrid: ["📅", "4️⃣", "📅", "🌧️", "🌈", "🌧️", "🌷", "🐣", "🌸"]
+    },
+    {
+        id: "month_005",
+        german: "Mai",
+        czech: "květen",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#32CD32",
+        emojiGrid: ["📅", "5️⃣", "📅", "🌸", "🌺", "🌸", "🌻", "🌹", "🌷"]
+    },
+    {
+        id: "month_006",
+        german: "Juni",
+        czech: "červen",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#00FA9A",
+        emojiGrid: ["📅", "6️⃣", "📅", "☀️", "🌞", "☀️", "🍓", "🌻", "🏖️"]
+    },
+    {
+        id: "month_007",
+        german: "Juli",
+        czech: "červenec",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#FFD700",
+        emojiGrid: ["📅", "7️⃣", "📅", "☀️", "🏖️", "☀️", "🌴", "🍦", "⛱️"]
+    },
+    {
+        id: "month_008",
+        german: "August",
+        czech: "srpen",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#FFA500",
+        emojiGrid: ["📅", "8️⃣", "📅", "☀️", "🌻", "☀️", "🌽", "🍉", "🏊"]
+    },
+    {
+        id: "month_009",
+        german: "September",
+        czech: "září",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#FF8C00",
+        emojiGrid: ["📅", "9️⃣", "📅", "🍂", "📚", "🍂", "🎒", "🍎", "🍁"]
+    },
+    {
+        id: "month_010",
+        german: "Oktober",
+        czech: "říjen",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#D2691E",
+        emojiGrid: ["📅", "🔟", "📅", "🍂", "🎃", "🍂", "🍁", "🌰", "👻"]
+    },
+    {
+        id: "month_011",
+        german: "November",
+        czech: "listopad",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#8B4513",
+        emojiGrid: ["📅", "1️⃣", "1️⃣", "🍂", "🌫️", "🍂", "🍁", "🦃", "🌧️"]
+    },
+    {
+        id: "month_012",
+        german: "Dezember",
+        czech: "prosinec",
+        category: "months",
+        categoryColor: "#B8E0D2",
+        uniqueColor: "#1E90FF",
+        emojiGrid: ["📅", "1️⃣", "2️⃣", "❄️", "🎄", "❄️", "🎁", "⛄", "🎅"]
     }
 ];

@@ -143,23 +143,51 @@
                 .replace(/\s+/g, ' ');
         }
 
-        // Compare answers with fuzzy matching
-        function compareAnswers(userInput, correctAnswer) {
+        // Get all acceptable answers for an entry (handles both string and array format)
+        function getAcceptableAnswers(czechField) {
+            if (Array.isArray(czechField)) {
+                return czechField;
+            }
+            return [czechField];
+        }
+
+        // Format the answer display (shows all forms if multiple exist)
+        function formatAnswerDisplay(czechField) {
+            const answers = getAcceptableAnswers(czechField);
+            if (answers.length === 1) {
+                return answers[0];
+            }
+            // Show all forms separated by " / "
+            return answers.join(' / ');
+        }
+
+        // Compare answers with fuzzy matching (supports multiple acceptable answers)
+        function compareAnswers(userInput, czechField) {
+            const acceptableAnswers = getAcceptableAnswers(czechField);
             const userNorm = normalizeString(userInput);
-            const correctNorm = normalizeString(correctAnswer);
 
-            // Exact match
-            if (userNorm === correctNorm) return 'PERFECT';
+            // Check each acceptable answer
+            for (const correctAnswer of acceptableAnswers) {
+                const correctNorm = normalizeString(correctAnswer);
 
-            // Levenshtein distance check
-            const distance = levenshteinDistance(userNorm, correctNorm);
-            if (distance <= 2 && distance <= correctNorm.length * 0.2) {
-                return 'ALMOST';
+                // Exact match
+                if (userNorm === correctNorm) return 'PERFECT';
             }
 
-            // Check without diacritics
-            if (removeDiacritics(userNorm) === removeDiacritics(correctNorm)) {
-                return 'ALMOST';
+            // Check for "almost" matches against all acceptable answers
+            for (const correctAnswer of acceptableAnswers) {
+                const correctNorm = normalizeString(correctAnswer);
+
+                // Levenshtein distance check
+                const distance = levenshteinDistance(userNorm, correctNorm);
+                if (distance <= 2 && distance <= correctNorm.length * 0.2) {
+                    return 'ALMOST';
+                }
+
+                // Check without diacritics
+                if (removeDiacritics(userNorm) === removeDiacritics(correctNorm)) {
+                    return 'ALMOST';
+                }
             }
 
             return 'WRONG';
@@ -251,23 +279,24 @@
             document.getElementById('nextWorth').textContent = `Next: ${nextPoints} pts`;
         }
 
-        function showFeedback(result, correctAnswer) {
+        function showFeedback(result, czechField) {
             const feedback = document.getElementById('feedback');
             feedback.style.display = 'block';
+            const answerDisplay = formatAnswerDisplay(czechField);
 
             if (result === 'PERFECT') {
                 feedback.className = 'feedback correct';
-                feedback.textContent = '✅ Perfect! ' + correctAnswer;
+                feedback.textContent = '✅ Perfect! ' + answerDisplay;
                 document.getElementById('cardContainer').classList.add('flash-correct');
                 setTimeout(() => {
                     document.getElementById('cardContainer').classList.remove('flash-correct');
                 }, 600);
             } else if (result === 'ALMOST') {
                 feedback.className = 'feedback almost';
-                feedback.textContent = '⚠️ Almost right! Correct: ' + correctAnswer;
+                feedback.textContent = '⚠️ Almost right! Correct: ' + answerDisplay;
             } else {
                 feedback.className = 'feedback wrong';
-                feedback.textContent = '❌ Wrong! Correct answer: ' + correctAnswer;
+                feedback.textContent = '❌ Wrong! Correct answer: ' + answerDisplay;
                 document.getElementById('cardContainer').classList.add('shake', 'flash-wrong');
                 setTimeout(() => {
                     document.getElementById('cardContainer').classList.remove('shake', 'flash-wrong');
@@ -306,10 +335,11 @@
             mistakesList.innerHTML = mistakes.map((mistake, index) => {
                 const emoji = mistake.entry.emojiGrid[4]; // Center emoji
                 const progressDots = '✓'.repeat(mistake.consecutiveCorrect) + '○'.repeat(3 - mistake.consecutiveCorrect);
+                const czechDisplay = formatAnswerDisplay(mistake.entry.czech);
                 return `
                     <div class="mistake-item">
                         <span class="emoji-preview">${emoji}</span>
-                        ${index + 1}. ${mistake.entry.german} → ${mistake.entry.czech} 
+                        ${index + 1}. ${mistake.entry.german} → ${czechDisplay} 
                         (${mistake.errors} ${mistake.errors === 1 ? 'error' : 'errors'})
                         <span style="margin-left: 10px; color: #28a745;">${progressDots}</span>
                     </div>

@@ -42,7 +42,8 @@ start index.html  # Windows
 |----------|----------|
 | Greetings | Hallo → Ahoj, Guten Tag → Dobrý den |
 | Basics | Danke → Děkuji, Bitte → Prosím |
-| Numbers | eins → jeden, zwei → dva |
+| Numbers | eins → jeden/jedna, zwei → dva/dvě, prices, dates, ages, measurements, time |
+| Months | Januar → leden, Februar → únor, März → březen |
 | Food & Drink | Bier → pivo, Kaffee → káva |
 | Travel | Bahnhof → nádraží, links → vlevo |
 | Time & Days | heute → dnes, Montag → pondělí |
@@ -66,12 +67,17 @@ Edit `vocabulary.js` and add entries following this format:
 {
     id: "category_xxx",
     german: "German Word",
-    czech: "Czech Translation",
+    czech: "Czech Translation",  // Can also be an array for multiple forms: ["form1", "form2"]
     category: "category_name",
     categoryColor: "#HEXCOLOR",
     uniqueColor: "#HEXCOLOR",
     emojiGrid: ["🔤", "🔤", "🔤", "🔤", "🔤", "🔤", "🔤", "🔤", "🔤"]
 }
+```
+
+For words with masculine/feminine variants (like numbers), use an array:
+```javascript
+czech: ["jeden", "jedna"]  // Both forms are accepted as correct answers
 ```
 
 ## License
